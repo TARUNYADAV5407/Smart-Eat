@@ -1,0 +1,1100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Eat - Nutrition Dashboard</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f0f8ef;
+    color: #17251a;
+}
+
+/* HEADER */
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    padding: 18px 3%;
+    border-bottom: 1px solid #e4eee2;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #087b27;
+}
+
+.logo h2 {
+    margin: 0;
+    font-size: 26px;
+}
+
+.logo p {
+    margin: 3px 0;
+    font-size: 13px;
+    color: #444;
+}
+
+.welcome {
+    flex: 1;
+    margin-left: 30px;
+}
+
+.welcome h2 {
+    margin: 0;
+    font-size: 25px;
+}
+
+.welcome span {
+    color: #087b27;
+}
+
+.welcome p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: bold;
+}
+
+.avatar {
+    width: 43px;
+    height: 43px;
+    background: #087b27;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 23px;
+}
+
+/* MAIN LAYOUT */
+
+.dashboard {
+    display: grid;
+    grid-template-columns: 32% 68%;
+    gap: 15px;
+    padding: 16px;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card {
+    background: white;
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 4px 12px #174d2010;
+}
+
+/* ADD FOOD */
+
+.card h2 {
+    margin-top: 0;
+    font-size: 21px;
+}
+
+.add-food h2 {
+    color: #087b27;
+    font-size: 25px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin: 14px 0 7px;
+}
+
+input, select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #d5ddd5;
+    border-radius: 9px;
+    font-size: 15px;
+    outline: none;
+}
+
+input:focus, select:focus {
+    border-color: #16832d;
+}
+
+.quantity-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.add-btn {
+    width: 100%;
+    margin-top: 18px;
+    padding: 14px;
+    background: #087b0b;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.add-btn:hover {
+    background: #056408;
+}
+
+/* TODAY'S FOOD */
+
+.food-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.food-heading a {
+    color: #087b27;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.food-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 13px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.food-name {
+    flex: 1;
+}
+
+.food-name strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.food-name small {
+    color: #777;
+}
+
+.food-calories {
+    color: #087b27;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.delete-btn {
+    border: none;
+    background: none;
+    font-size: 19px;
+    cursor: pointer;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    background: #e5f8e2;
+    color: #087b27;
+    padding: 14px;
+    margin-top: 15px;
+    border-radius: 9px;
+    font-weight: bold;
+}
+
+/* NUTRITION CARDS */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    min-width: 0;
+}
+
+.stat h3 {
+    font-size: 16px;
+    margin: 0 0 10px;
+}
+
+.stat h2 {
+    font-size: 23px;
+    margin: 0 0 7px;
+}
+
+.stat p {
+    margin: 0;
+    color: #555;
+    font-size: 13px;
+}
+
+.circle {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: conic-gradient(
+        #27ad32 var(--progress),
+        #e3eee2 0
+    );
+    position: relative;
+    flex-shrink: 0;
+}
+
+.circle::before {
+    content: "";
+    position: absolute;
+    width: 49px;
+    height: 49px;
+    background: white;
+    border-radius: 50%;
+}
+
+.circle span {
+    position: relative;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* WEEKLY CHART */
+
+.chart-card {
+    min-height: 260px;
+}
+
+.chart-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chart-heading select {
+    width: auto;
+    padding: 8px;
+}
+
+.chart {
+    width: 100%;
+    height: 200px;
+    margin-top: 10px;
+}
+
+.chart svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+/* BOTTOM CARDS */
+
+.bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+/* DONUT CHART */
+
+.donut-area {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px 0;
+}
+
+.donut {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: conic-gradient(
+        #4acb39 0% 31%,
+        #159be9 31% 86%,
+        #ffb900 86% 100%
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.donut-inner {
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.donut-inner small {
+    font-size: 13px;
+}
+
+.legend p {
+    margin: 14px 0;
+    font-size: 14px;
+}
+
+.green-dot, .blue-dot, .yellow-dot {
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    border-radius: 4px;
+    margin-right: 7px;
+}
+
+.green-dot { background: #4acb39; }
+.blue-dot { background: #159be9; }
+.yellow-dot { background: #ffb900; }
+
+/* DAILY GOAL */
+
+.goal-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 15px;
+}
+
+.goal-circle {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background: conic-gradient(
+        #20aa26 0% var(--goal),
+        #e3e7e7 var(--goal) 100%
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.goal-inner {
+    width: 135px;
+    height: 135px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.goal-inner h2 {
+    font-size: 30px;
+    margin: 0;
+}
+
+.goal-inner p {
+    font-size: 13px;
+    color: #555;
+}
+
+.goal-info p {
+    margin: 12px 0;
+    line-height: 1.5;
+}
+
+.goal-info strong {
+    color: #087b27;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 1000px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 600px) {
+    header {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .welcome {
+        order: 3;
+        flex-basis: 100%;
+        margin: 0;
+    }
+
+    .dashboard {
+        padding: 10px;
+    }
+
+    .stats, .bottom {
+        grid-template-columns: 1fr;
+    }
+
+    .goal-content {
+        flex-wrap: wrap;
+    }
+
+    .stat {
+        padding: 5px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="logo">
+        <div style="font-size:38px;">🌿</div>
+        <div>
+            <h2>SMART EAT</h2>
+            <p>Food Nutrition Tracker</p>
+        </div>
+    </div>
+
+    <div class="welcome">
+        <h2>Welcome Back, <span id="userName">User!</span> 👋</h2>
+        <p>Track your food, analyze nutrition and stay healthy.</p>
+    </div>
+
+    <div class="profile">
+        <div class="avatar">●</div>
+        <span id="profileName">User</span> <a href="#" id="logoutLink" style="color:#087b27;font-size:14px;text-decoration:none;margin-left:6px;">Logout</a>
+    </div>
+
+</header>
+
+
+<div class="dashboard">
+
+    <!-- LEFT SECTION -->
+
+    <div class="left">
+
+        <!-- ADD FOOD -->
+
+        <div class="card add-food">
+
+            <h2>🍴 Add Food</h2>
+
+            <form id="foodForm">
+
+                <label>Food Name</label>
+
+                <input
+                    type="text"
+                    id="foodName"
+                    placeholder="e.g., Apple, Chicken, Rice"
+                    required
+                >
+
+                <div class="quantity-row">
+
+                    <div>
+                        <label>Quantity</label>
+                        <input
+                            type="number"
+                            id="quantity"
+                            placeholder="e.g., 100"
+                            min="1"
+                            required
+                        >
+                    </div>
+
+                    <div>
+                        <label>Unit</label>
+                        <select id="unit">
+                            <option value="grams">grams</option>
+                            <option value="servings">servings (as listed)</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <button class="add-btn" type="submit">
+                    ＋ Add Food
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- TODAY'S FOOD -->
+
+        <div class="card">
+
+            <div class="food-heading">
+                <h2>📋 Today's Foods</h2>
+                <a href="#foodList">View All</a>
+            </div>
+
+            <div id="foodList">
+
+                <p style="color:#777;text-align:center;">
+                    No food added yet.
+                </p>
+
+            </div>
+
+            <div class="total">
+                <span>Total Calories</span>
+                <span id="totalCalories">0 kcal</span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT SECTION -->
+
+    <div class="right">
+
+        <!-- NUTRITION STATS -->
+
+        <div class="stats">
+
+            <div class="card stat">
+                <div>
+                    <h3>🔥 Calories</h3>
+                    <h2 id="calories">0 kcal</h2>
+                    <p>of 2,000 kcal</p>
+                </div>
+                <div class="circle" id="calCircle"
+                     style="--progress:0%">
+                    <span id="calPercent">0%</span>
+                </div>
+            </div>
+
+            <div class="card stat">
+                <div>
+                    <h3>💪 Protein</h3>
+                    <h2 id="protein">0 g</h2>
+                    <p>of 120 g</p>
+                </div>
+                <div class="circle" id="proteinCircle"
+                     style="--progress:0%">
+                    <span id="proteinPercent">0%</span>
+                </div>
+            </div>
+
+            <div class="card stat">
+                <div>
+                    <h3>🌿 Carbs</h3>
+                    <h2 id="carbs">0 g</h2>
+                    <p>of 250 g</p>
+                </div>
+                <div class="circle" id="carbCircle"
+                     style="--progress:0%">
+                    <span id="carbPercent">0%</span>
+                </div>
+            </div>
+
+            <div class="card stat">
+                <div>
+                    <h3>💧 Fat</h3>
+                    <h2 id="fat">0 g</h2>
+                    <p>of 70 g</p>
+                </div>
+                <div class="circle" id="fatCircle"
+                     style="--progress:0%">
+                    <span id="fatPercent">0%</span>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- WEEKLY CALORIE TREND -->
+
+        <div class="card chart-card">
+
+            <div class="chart-heading">
+                <h2>📈 Weekly Calorie Trend</h2>
+
+                <select id="chartPeriod">
+                    <option>Last 7 Days</option>
+                    <option>This Week</option>
+                </select>
+            </div>
+
+            <div class="chart">
+
+                <svg viewBox="0 0 700 200"
+                     preserveAspectRatio="none">
+
+                    <defs>
+                        <linearGradient id="area"
+                            x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%"
+                                stop-color="#45cb45"
+                                stop-opacity="0.4"/>
+                            <stop offset="100%"
+                                stop-color="#45cb45"
+                                stop-opacity="0.02"/>
+                        </linearGradient>
+                    </defs>
+
+                    <g stroke="#e8eee8" stroke-width="1">
+                        <line x1="45" y1="20" x2="690" y2="20"/>
+                        <line x1="45" y1="60" x2="690" y2="60"/>
+                        <line x1="45" y1="100" x2="690" y2="100"/>
+                        <line x1="45" y1="140" x2="690" y2="140"/>
+                        <line x1="45" y1="180" x2="690" y2="180"/>
+                    </g>
+
+                    <g fill="#555" font-size="11">
+                        <text x="2" y="24">2000</text>
+                        <text x="10" y="64">1500</text>
+                        <text x="10" y="104">1000</text>
+                        <text x="17" y="144">500</text>
+                        <text x="30" y="184">0</text>
+                    </g>
+
+                    <path id="chartArea"
+                        d="M60 130 L160 115 L260 110 L360 90 L460 85 L560 55 L660 75 L660 180 L60 180 Z"
+                        fill="url(#area)"/>
+
+                    <polyline id="chartLine"
+                        points="60,130 160,115 260,110 360,90 460,85 560,55 660,75"
+                        fill="none"
+                        stroke="#159c19"
+                        stroke-width="3"
+                        stroke-linejoin="round"/>
+
+                    <g fill="#087b27" id="chartDots">
+                        <circle cx="60" cy="130" r="4"/>
+                        <circle cx="160" cy="115" r="4"/>
+                        <circle cx="260" cy="110" r="4"/>
+                        <circle cx="360" cy="90" r="4"/>
+                        <circle cx="460" cy="85" r="4"/>
+                        <circle cx="560" cy="55" r="4"/>
+                        <circle cx="660" cy="75" r="4"/>
+                    </g>
+
+                    <g fill="#222" font-size="12" id="chartLabels"
+                       text-anchor="middle">
+                        <text x="60" y="198">Mon</text>
+                        <text x="160" y="198">Tue</text>
+                        <text x="260" y="198">Wed</text>
+                        <text x="360" y="198">Thu</text>
+                        <text x="460" y="198">Fri</text>
+                        <text x="560" y="198">Sat</text>
+                        <text x="660" y="198">Sun</text>
+                    </g>
+
+                </svg>
+
+            </div>
+
+        </div>
+
+
+        <!-- BOTTOM CHARTS -->
+
+        <div class="bottom">
+
+            <!-- MACRONUTRIENT -->
+
+            <div class="card">
+
+                <h2>📊 Macronutrient Distribution</h2>
+
+                <div class="donut-area">
+
+                    <div class="donut" id="macroDonut">
+
+                        <div class="donut-inner">
+                            <span id="donutCalories">0</span>
+                            <small>kcal</small>
+                        </div>
+
+                    </div>
+
+                    <div class="legend">
+
+                        <p>
+                            <span class="green-dot"></span>
+                            Protein – <span id="macroProtein">0</span> g
+                        </p>
+
+                        <p>
+                            <span class="blue-dot"></span>
+                            Carbs – <span id="macroCarbs">0</span> g
+                        </p>
+
+                        <p>
+                            <span class="yellow-dot"></span>
+                            Fat – <span id="macroFat">0</span> g
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DAILY GOAL -->
+
+            <div class="card">
+
+                <h2>🎯 Daily Calorie Goal</h2>
+
+                <div class="goal-content">
+
+                    <div class="goal-circle"
+                         id="goalCircle"
+                         style="--goal:0%">
+
+                        <div class="goal-inner">
+                            <h2 id="goalPercent">0%</h2>
+                            <p id="goalText">0 / 2,000 kcal</p>
+                        </div>
+
+                    </div>
+
+                    <div class="goal-info">
+
+                        <p>
+                            📅 Goal<br>
+                            <strong>2,000 kcal</strong>
+                        </p>
+
+                        <p>
+                            🍴 Consumed<br>
+                            <strong id="goalConsumed">0 kcal</strong>
+                        </p>
+
+                        <p>
+                            🔥 Remaining<br>
+                            <strong id="remaining">2,000 kcal</strong>
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+const GOALS = { calories: 2000, protein: 120, carbs: 250, fat: 70 };
+
+// The user's local calendar day (so "today" is correct in any timezone)
+function localDay() {
+    const d = new Date();
+    return d.getFullYear() + "-" +
+        String(d.getMonth() + 1).padStart(2, "0") + "-" +
+        String(d.getDate()).padStart(2, "0");
+}
+
+async function api(path, options = {}) {
+    const res = await fetch(path, {
+        credentials: "same-origin",
+        headers: { "Content-Type": "application/json" },
+        ...options
+    });
+    const data = await res.json().catch(() => ({}));
+    if (res.status === 401) {
+        window.location.href = "login.html";
+        throw new Error("Please log in.");
+    }
+    if (!res.ok) throw new Error(data.error || "Something went wrong.");
+    return data;
+}
+
+
+// ---------- Food name suggestions from the dataset ----------
+const suggestionList = document.createElement("datalist");
+suggestionList.id = "foodSuggestions";
+document.body.appendChild(suggestionList);
+
+const foodNameInput = document.getElementById("foodName");
+foodNameInput.setAttribute("list", "foodSuggestions");
+foodNameInput.setAttribute("autocomplete", "off");
+
+let suggestionIds = {};   // label -> food id
+let searchTimer = null;
+
+foodNameInput.addEventListener("input", function () {
+    clearTimeout(searchTimer);
+    const q = foodNameInput.value.trim();
+    if (q.length < 2) return;
+
+    searchTimer = setTimeout(async () => {
+        try {
+            const data = await api("/api/foods?limit=10&q=" + encodeURIComponent(q));
+            suggestionIds = {};
+            suggestionList.innerHTML = "";
+            data.foods.forEach(f => {
+                const label = f.name + " (" + f.measure + ")";
+                suggestionIds[label] = f.id;
+                const opt = document.createElement("option");
+                opt.value = label;
+                suggestionList.appendChild(opt);
+            });
+        } catch (e) { /* ignore suggestion errors */ }
+    }, 200);
+});
+
+
+// ---------- Add food ----------
+document.getElementById("foodForm")
+.addEventListener("submit", async function (event) {
+
+    event.preventDefault();
+
+    const typed = foodNameInput.value.trim();
+    const payload = {
+        quantity: Number(document.getElementById("quantity").value),
+        unit: document.getElementById("unit").value,
+        date: localDay()
+    };
+
+    if (suggestionIds[typed]) payload.food_id = suggestionIds[typed];
+    else payload.food_name = typed;
+
+    try {
+        await api("/api/log", { method: "POST", body: JSON.stringify(payload) });
+        document.getElementById("foodForm").reset();
+        suggestionIds = {};
+        await loadDashboard();
+    } catch (err) {
+        alert(err.message);
+    }
+});
+
+
+// ---------- Remove food ----------
+async function removeFood(id) {
+    try {
+        await api("/api/log/" + id, { method: "DELETE" });
+        await loadDashboard();
+    } catch (err) {
+        alert(err.message);
+    }
+}
+
+
+// ---------- Logout ----------
+document.getElementById("logoutLink").addEventListener("click", async function (e) {
+    e.preventDefault();
+    await fetch("/api/logout", { method: "POST" });
+    window.location.href = "login.html";
+});
+
+
+// ---------- Load everything from the backend ----------
+async function loadDashboard() {
+    const data = await api("/api/dashboard?date=" + localDay());
+    renderDashboard(data);
+}
+
+function renderDashboard(data) {
+
+    const first = (data.user.name || "User").split(" ")[0];
+    document.getElementById("userName").textContent = first + "!";
+    document.getElementById("profileName").textContent = first;
+
+    const foods = data.entries;
+    const calories = Math.round(data.totals.calories);
+    const protein = data.totals.protein;
+    const carbs = data.totals.carbs;
+    const fat = data.totals.fat;
+
+    // Food list
+    const list = document.getElementById("foodList");
+    list.innerHTML = "";
+
+    if (foods.length === 0) {
+        list.innerHTML =
+            '<p style="color:#777;text-align:center;">No food added yet.</p>';
+    }
+
+    foods.forEach(food => {
+
+        const item = document.createElement("div");
+        item.className = "food-item";
+
+        const name = document.createElement("div");
+        name.className = "food-name";
+
+        const strong = document.createElement("strong");
+        strong.textContent = food.name;
+
+        const small = document.createElement("small");
+        small.textContent = food.quantity + " " + food.unit;
+
+        name.append(strong, small);
+
+        const kcal = document.createElement("span");
+        kcal.className = "food-calories";
+        kcal.textContent = Math.round(food.calories) + " kcal";
+
+        const remove = document.createElement("button");
+        remove.className = "delete-btn";
+        remove.textContent = "🗑";
+        remove.type = "button";
+        remove.addEventListener("click", () => removeFood(food.id));
+
+        item.append(name, kcal, remove);
+        list.appendChild(item);
+    });
+
+    // Totals
+    document.getElementById("totalCalories").textContent = calories + " kcal";
+    document.getElementById("calories").textContent = calories + " kcal";
+    document.getElementById("protein").textContent = protein + " g";
+    document.getElementById("carbs").textContent = carbs + " g";
+    document.getElementById("fat").textContent = fat + " g";
+
+    updateProgress("cal", calories, GOALS.calories);
+    updateProgress("protein", protein, GOALS.protein);
+    updateProgress("carb", carbs, GOALS.carbs);
+    updateProgress("fat", fat, GOALS.fat);
+
+    // Macro donut
+    const macroTotal = protein + carbs + fat;
+    const p = macroTotal ? protein / macroTotal * 100 : 0;
+    const c = macroTotal ? carbs / macroTotal * 100 : 0;
+
+    document.getElementById("macroDonut").style.background =
+        `conic-gradient(#4acb39 0% ${p}%,
+        #159be9 ${p}% ${p + c}%,
+        #ffb900 ${p + c}% 100%)`;
+
+    document.getElementById("donutCalories").textContent = calories;
+    document.getElementById("macroProtein").textContent = protein;
+    document.getElementById("macroCarbs").textContent = carbs;
+    document.getElementById("macroFat").textContent = fat;
+
+    // Daily goal
+    const percentage = Math.min(100, calories / GOALS.calories * 100);
+
+    document.getElementById("goalCircle")
+        .style.setProperty("--goal", percentage + "%");
+    document.getElementById("goalPercent").textContent =
+        Math.round(percentage) + "%";
+    document.getElementById("goalText").textContent =
+        calories + " / 2,000 kcal";
+    document.getElementById("goalConsumed").textContent = calories + " kcal";
+    document.getElementById("remaining").textContent =
+        Math.max(0, GOALS.calories - calories) + " kcal";
+
+    renderWeekly(data.weekly);
+}
+
+
+// ---------- Weekly calorie chart ----------
+function renderWeekly(weekly) {
+
+    const pts = weekly.map((d, i) => ({
+        x: 60 + i * 100,
+        y: 180 - Math.min(d.calories, 2000) / 2000 * 160,
+        label: d.label
+    }));
+
+    document.getElementById("chartLine").setAttribute(
+        "points", pts.map(p => p.x + "," + p.y).join(" "));
+
+    document.getElementById("chartArea").setAttribute(
+        "d", "M" + pts.map(p => p.x + " " + p.y).join(" L") +
+             " L" + pts[pts.length - 1].x + " 180 L" + pts[0].x + " 180 Z");
+
+    const ns = "http://www.w3.org/2000/svg";
+    const dots = document.getElementById("chartDots");
+    const labels = document.getElementById("chartLabels");
+    dots.innerHTML = "";
+    labels.innerHTML = "";
+
+    pts.forEach(p => {
+        const dot = document.createElementNS(ns, "circle");
+        dot.setAttribute("cx", p.x);
+        dot.setAttribute("cy", p.y);
+        dot.setAttribute("r", 4);
+        dots.appendChild(dot);
+
+        const t = document.createElementNS(ns, "text");
+        t.setAttribute("x", p.x);
+        t.setAttribute("y", 198);
+        t.textContent = p.label;
+        labels.appendChild(t);
+    });
+}
+
+
+// ---------- Circular progress ----------
+function updateProgress(id, value, target) {
+
+    const percentage = Math.min(100, value / target * 100);
+
+    document.getElementById(id + "Circle")
+        .style.setProperty("--progress", percentage + "%");
+
+    document.getElementById(id + "Percent").textContent =
+        Math.round(percentage) + "%";
+}
+
+
+// Initial load
+loadDashboard().catch(err => console.error(err));
+
+</script>
+
+</body>
+</html>

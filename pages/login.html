@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Eat - Login</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f0f8ed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        /* Main Container */
+        .container {
+            width: 100%;
+            max-width: 1420px;
+            background: white;
+            border-radius: 35px;
+            overflow: hidden;
+            display: flex;
+            min-height: 650px;
+            box-shadow: 0 10px 35px #00000015;
+        }
+
+        /* Left Food Image */
+        .image-section {
+            width: 50%;
+            background-image: url(
+                "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1000&q=90"
+            );
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Right Login Section */
+        .form-section {
+            width: 50%;
+            padding: 45px 9%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Logo */
+        .logo {
+            font-size: 34px;
+            font-weight: bold;
+            color: #087b27;
+            margin-bottom: 35px;
+        }
+
+        .logo span {
+            font-size: 38px;
+            margin-right: 8px;
+        }
+
+        /* Heading */
+        .form-section h1 {
+            font-size: 48px;
+            line-height: 1.1;
+            margin: 0 0 12px;
+            color: #111;
+        }
+
+        .form-section h1 span {
+            color: #087b27;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 35px;
+        }
+
+        /* Input Fields */
+        .form-section input {
+            width: 100%;
+            padding: 17px 18px;
+            margin-bottom: 18px;
+            border: 1.5px solid #d5d5d5;
+            border-radius: 12px;
+            outline: none;
+            font-size: 17px;
+        }
+
+        .form-section input:focus {
+            border-color: #16832d;
+        }
+
+        /* Forgot Password */
+        .forgot {
+            text-align: right;
+            margin: 3px 0 35px;
+        }
+
+        .forgot a {
+            color: #087b27;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        /* Login Button */
+        .login-btn {
+            width: 100%;
+            padding: 17px;
+            border: none;
+            border-radius: 15px;
+            background: #087b0b;
+            color: white;
+            font-size: 19px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            background: #056408;
+        }
+
+        /* Signup */
+        .signup {
+            text-align: center;
+            margin-top: 65px;
+            font-size: 18px;
+            color: #666;
+        }
+
+        .signup a {
+            color: #087b27;
+            font-weight: bold;
+            text-decoration: none;
+            margin-left: 5px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 750px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                flex-direction: column;
+                border-radius: 20px;
+            }
+
+            .image-section {
+                width: 100%;
+                height: 250px;
+            }
+
+            .form-section {
+                width: 100%;
+                padding: 35px 25px;
+            }
+
+            .logo {
+                font-size: 26px;
+                margin-bottom: 25px;
+            }
+
+            .form-section h1 {
+                font-size: 36px;
+            }
+
+            .subtitle {
+                font-size: 15px;
+            }
+
+            .signup {
+                margin-top: 40px;
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Left Image -->
+        <div class="image-section"></div>
+
+        <!-- Login Form -->
+        <div class="form-section">
+
+            <div class="logo">
+                <span>🌿</span> SMART EAT
+            </div>
+
+            <h1>
+                Hello,<br>
+                <span>Welcome Back</span>
+            </h1>
+
+            <p class="subtitle">
+                Login to manage your account.
+            </p>
+
+            <form id="loginForm">
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    required
+                >
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    required
+                >
+
+                <div class="forgot">
+                    <a href="for.html">
+                        Forgot your password?
+                    </a>
+                </div>
+
+                <button type="submit" class="login-btn">
+                    Login
+                </button>
+
+            </form>
+
+            <div class="signup">
+                Don't have an account?
+                <a href="signup.html">Signup</a>
+            </div>
+
+        </div>
+
+    </div>
+
+<script>
+    document.getElementById("loginForm").addEventListener("submit", async function (e) {
+        e.preventDefault();
+        const f = new FormData(e.target);
+        const btn = e.target.querySelector("button[type=submit]");
+        btn.disabled = true;
+        try {
+            const res = await fetch("/api/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: f.get("email"), password: f.get("password") })
+            });
+            const data = await res.json().catch(() => ({}));
+            if (res.ok) { window.location.href = "dashboard.html"; }
+            else { alert(data.error || "Login failed."); }
+        } catch (err) {
+            alert("Could not reach the server. Is it running?");
+        } finally { btn.disabled = false; }
+    });
+</script>
+
+</body>
+</html>

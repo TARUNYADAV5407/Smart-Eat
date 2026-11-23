@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Eat - Nutrition Analyzer</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #202820;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 15px 5%;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        header h2 {
+            color: #249b55;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #222;
+            margin: 12px;
+        }
+
+        /* Full Background Hero */
+        .hero {
+            min-height: 650px;
+            display: flex;
+            align-items: center;
+            padding: 40px 7%;
+            box-sizing: border-box;
+
+            background-image:
+                linear-gradient(
+                    to right,
+                    rgba(255,255,255,0.96) 0%,
+                    rgba(255,255,255,0.90) 42%,
+                    rgba(255,255,255,0.15) 75%
+                ),
+                url("https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1800&q=90");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .content {
+            max-width: 550px;
+        }
+
+        .content h1 {
+            font-size: 52px;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .content p {
+            color: #444;
+            line-height: 1.7;
+        }
+
+        .content button {
+            background: #ff7518;
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 15px;
+        }
+
+        .content button:hover {
+            background: #e8640b;
+        }
+
+        /* Nutrition Cards */
+       
+.nutrition {
+    position: absolute;
+    top: 150px;
+    right: 3%;
+    left: auto;
+    transform: none;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 0;
+    z-index: 2;
+}
+
+
+        .nutrition div {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 3px 12px #0002;
+        }
+
+        .nutrition strong {
+            color: #ff7518;
+        }
+
+        .how {
+            text-align: center;
+            padding: 35px 5%;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .steps div {
+            flex: 1;
+            padding: 20px;
+            background: #f1f8f2;
+            border-radius: 12px;
+        }
+
+        .steps h3 {
+            color: #249b55;
+        }
+
+        footer {
+            background: #176b3a;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        @media (max-width: 700px) {
+            header {
+                flex-direction: column;
+            }
+
+            nav {
+                text-align: center;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 7px;
+            }
+
+            .hero {
+                min-height: 650px;
+                padding: 30px 6%;
+                background-position: center;
+                position: relative;
+            }
+
+            .content {
+                max-width: 100%;
+            }
+
+            .content h1 {
+                font-size: 36px;
+            }
+
+            .nutrition {
+                position: absolute;
+                top: auto;
+                bottom: 20px;
+                right: 0;
+                left: 0;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .nutrition div {
+                padding: 10px;
+            }
+
+            .steps {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h2>🌿 SMART EAT</h2>
+
+        <nav>
+            <a href="">Home</a>
+            <a href="about_page.html">About</a>
+            <a href="feat.html">Features</a>
+            <a href="login.html">Log In</a>
+        </nav>
+    </header>
+
+    <!-- Full Background Image -->
+    <section class="hero">
+
+        <div class="content">
+            <h1>Your Personal<br>Nutrition Analyzer</h1>
+
+            <p>
+                Explore your favourite foods and discover
+                useful insights from nutrition data.
+            </p>
+
+            <p>✔ Check calories and nutrients</p>
+            <p>✔ Compare protein, fats and carbohydrates</p>
+            <p>✔ Explore nutrition through charts</p>
+            <p>✔ Make informed food choices</p>
+
+            <button onclick="location.href='login.html'">
+                GET STARTED →
+            </button>
+        </div>
+
+        <div class="nutrition">
+            <div>
+                Calories<br>
+                <strong>278 kcal</strong>
+            </div>
+
+            <div>
+                Fat<br>
+                <strong>10 g</strong>
+            </div>
+
+            <div>
+                Protein<br>
+                <strong>7 g</strong>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="how" id="about">
+        <h2>About Smart Eat</h2>
+        <p>
+            Smart Eat helps users explore food nutrition
+            and understand nutritional data through charts.
+        </p>
+    </section>
+
+    <section class="how" id="features">
+        <h2>How It Works</h2>
+
+        <div class="steps">
+            <div>
+                <h3>🔍 Browse Foods</h3>
+                <p>Explore foods and their nutrition details.</p>
+            </div>
+
+            <div>
+                <h3>➕ Add Food</h3>
+                <p>Add food items and their nutrition values.</p>
+            </div>
+
+            <div>
+                <h3>📊 Analyze Data</h3>
+                <p>Compare calories, protein, fats and carbs.</p>
+            </div>
+
+            <div>
+                <h3>📈 View Charts</h3>
+                <p>Understand your dataset through graphs.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Smart Eat | Food Nutrition Data Analysis Project</p>
+    </footer>
+
+</body>
+</html>

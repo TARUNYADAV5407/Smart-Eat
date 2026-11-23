@@ -1,0 +1,4 @@
+.env
+smart_eat.db
+.secret_key
+__pycache__/

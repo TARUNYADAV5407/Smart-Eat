@@ -1,0 +1,313 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Smart Eat</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: white;
+            color: #202820;
+        }
+
+        /* Logo */
+        .logo {
+            padding: 25px 7%;
+            color: #087b27;
+            font-size: 27px;
+            font-weight: bold;
+        }
+
+        /* Main About Section */
+        .about {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 25px 8%;
+            gap: 45px;
+        }
+
+        .about-content {
+            width: 43%;
+        }
+
+        .tag {
+            background: #e5f3e5;
+            color: #087b27;
+            padding: 8px 18px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .about h1 {
+            font-size: 43px;
+            margin: 15px 0;
+        }
+
+        .about h1 span {
+            color: #16832d;
+        }
+
+        .about-content p {
+            font-size: 17px;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .about-image {
+            width: 55%;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 370px;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        /* Features */
+        .features {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 35px;
+            text-align: center;
+        }
+
+        .feature {
+            flex: 1;
+            padding: 10px;
+            border-right: 2px solid #ddd;
+        }
+
+        .feature:last-child {
+            border: none;
+        }
+
+        .feature h2 {
+            color: #16832d;
+            font-size: 30px;
+            margin: 5px;
+        }
+
+        .feature p {
+            font-size: 16px;
+            color: #222;
+            margin: 5px;
+        }
+
+        /* Mission and Vision */
+        .info-section {
+            display: flex;
+            align-items: center;
+            gap: 45px;
+            background: #f0f8ef;
+            border-radius: 25px;
+            padding: 15px 25px;
+            margin: 20px 7%;
+        }
+
+        .info-section img {
+            width: 43%;
+            height: 175px;
+            object-fit: cover;
+            border-radius: 18px;
+        }
+
+        .info-text {
+            flex: 1;
+            padding: 10px;
+        }
+
+        .info-text h2 {
+            font-size: 35px;
+            margin: 5px 0 12px;
+        }
+
+        .info-text h2 span {
+            color: #16832d;
+        }
+
+        .info-text p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #16832d;
+        }
+
+        /* Mobile */
+        @media (max-width: 750px) {
+
+            .logo {
+                text-align: center;
+            }
+
+            .about {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .about-content,
+            .about-image {
+                width: 100%;
+            }
+
+            .about h1 {
+                font-size: 34px;
+            }
+
+            .about-image img {
+                height: 280px;
+            }
+
+            .features {
+                gap: 5px;
+            }
+
+            .feature {
+                padding: 5px;
+            }
+
+            .feature p {
+                font-size: 12px;
+            }
+
+            .info-section {
+                flex-direction: column;
+                margin: 20px;
+                gap: 10px;
+            }
+
+            .info-section img {
+                width: 100%;
+                height: 200px;
+            }
+
+            .info-text h2 {
+                font-size: 28px;
+            }
+
+            .info-text p {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Logo -->
+    <div class="logo">
+        🌿 SMART EAT
+    </div>
+
+    <!-- About Section -->
+    <section class="about">
+
+        <div class="about-content">
+
+            <span class="tag">About Us</span>
+
+            <h1>About <span>Smart Eat</span></h1>
+
+            <p>
+                Smart Eat is a food nutrition data analysis platform
+                that helps users explore food nutrients, analyze
+                their diet, and make healthier and more informed
+                food choices through data.
+            </p>
+
+            <!-- Features -->
+            <div class="features">
+
+                <div class="feature">
+                    <h2>▥</h2>
+                    <p>Nutrition<br>Analysis</p>
+                </div>
+
+                <div class="feature">
+                    <h2>♧</h2>
+                    <p>Healthy<br>Food Choices</p>
+                </div>
+
+                <div class="feature">
+                    <h2>▱</h2>
+                    <p>Data<br>Driven Insights</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Main Image -->
+        <div class="about-image">
+            <img
+                src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=85"
+                alt="Healthy food and nutrition"
+            >
+        </div>
+
+    </section>
+
+    <!-- Our Mission -->
+    <section class="info-section">
+
+        <img
+            src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=900&q=85"
+            alt="Fresh vegetables and healthy food"
+        >
+
+        <div class="info-text">
+
+            <h2>Our <span>Mission</span></h2>
+
+            <p>
+                To make nutrition information simple, accessible,
+                and meaningful by combining food data with
+                easy-to-understand analysis and visualizations.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Our Vision -->
+    <section class="info-section">
+
+        <div class="info-text">
+
+            <h2>Our <span>Vision</span></h2>
+
+            <p>
+                To empower individuals to lead a healthier lifestyle
+                by using data-driven insights for better diet
+                planning, nutrition tracking, and food awareness.
+            </p>
+
+        </div>
+
+        <img
+            src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=900&q=85"
+            alt="Healthy balanced meal"
+        >
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Smart Eat | Food Nutrition Data Analysis</p>
+    </footer>
+
+</body>
+</html>

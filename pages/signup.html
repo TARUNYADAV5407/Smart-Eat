@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Eat - Sign Up</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f0f8ed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        /* Main Container */
+        .container {
+            width: 100%;
+            max-width: 1420px;
+            min-height: 700px;
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            display: flex;
+            box-shadow: 0 10px 35px #00000015;
+        }
+
+        /* Left Food Image */
+        .image-section {
+            width: 50%;
+            background-image: url(
+                "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1000&q=90"
+            );
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Right Signup Form */
+        .form-section {
+            width: 50%;
+            padding: 45px 9%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Logo */
+        .logo {
+            font-size: 35px;
+            font-weight: bold;
+            color: #087b27;
+            margin-bottom: 35px;
+        }
+
+        /* Heading */
+        h1 {
+            font-size: 45px;
+            margin: 0 0 12px;
+            color: #111;
+        }
+
+        h1 span {
+            color: #087b27;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 35px;
+        }
+
+        /* Input Fields */
+        .input-box {
+            width: 100%;
+            position: relative;
+            margin-bottom: 18px;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 17px 45px 17px 18px;
+            border: 1.5px solid #d5d5d5;
+            border-radius: 12px;
+            outline: none;
+            font-size: 17px;
+        }
+
+        .input-box input:focus {
+            border-color: #16832d;
+        }
+
+        /* Password Eye */
+        .eye {
+            position: absolute;
+            right: 16px;
+            top: 17px;
+            cursor: pointer;
+            font-size: 18px;
+            color: #555;
+        }
+
+        /* Signup Button */
+        .signup-btn {
+            width: 100%;
+            padding: 17px;
+            margin-top: 15px;
+            background: #087b0b;
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 19px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .signup-btn:hover {
+            background: #056408;
+        }
+
+        /* Login Link */
+        .login-link {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 18px;
+            color: #666;
+        }
+
+        .login-link a {
+            color: #087b27;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Mobile Design */
+        @media(max-width: 750px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                flex-direction: column;
+                border-radius: 20px;
+            }
+
+            .image-section {
+                width: 100%;
+                height: 240px;
+            }
+
+            .form-section {
+                width: 100%;
+                padding: 35px 25px;
+            }
+
+            .logo {
+                font-size: 27px;
+                margin-bottom: 25px;
+            }
+
+            h1 {
+                font-size: 34px;
+            }
+
+            .subtitle {
+                font-size: 15px;
+            }
+
+            .login-link {
+                font-size: 15px;
+                margin-top: 35px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Left Image -->
+        <div class="image-section"></div>
+
+        <!-- Signup Form -->
+        <div class="form-section">
+
+            <div class="logo">
+                🌿 SMART EAT
+            </div>
+
+            <h1>
+                Create <span>Account</span>
+            </h1>
+
+            <p class="subtitle">
+                Join Smart Eat and start your healthy journey.
+            </p>
+
+            <form id="signupForm">
+
+                <div class="input-box">
+                    <input
+                        type="text"
+                        placeholder="Full Name"
+                        name="name"
+                        required
+                    >
+                </div>
+
+                <div class="input-box">
+                    <input
+                        type="email"
+                        placeholder="Email Address"
+                        name="email"
+                        required
+                    >
+                </div>
+
+                <div class="input-box">
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Create Password"
+                        name="password"
+                        minlength="8"
+                        required
+                    >
+                    <span class="eye"
+                          onclick="togglePassword('password')">◉</span>
+                </div>
+
+                <div class="input-box">
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Confirm Password"
+                        name="confirmPassword"
+                        minlength="8"
+                        required
+                    >
+                    <span class="eye"
+                          onclick="togglePassword('confirmPassword')">◉</span>
+                </div>
+
+                <button type="submit" class="signup-btn">
+                    Create Account
+                </button>
+
+            </form>
+
+            <div class="login-link">
+                Already have an account?
+                <a href="login.html">Login</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        // Show and hide password
+        function togglePassword(id) {
+            const field = document.getElementById(id);
+
+            if (field.type === "password") {
+                field.type = "text";
+            } else {
+                field.type = "password";
+            }
+        }
+
+        // Check password matching
+        document.getElementById("signupForm")
+        .addEventListener("submit", async function(event) {
+
+            event.preventDefault();
+
+            const password =
+                document.getElementById("password").value;
+
+            const confirmPassword =
+                document.getElementById("confirmPassword").value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            const form = document.getElementById("signupForm");
+            const btn = form.querySelector("button[type=submit]");
+            btn.disabled = true;
+
+            try {
+                const res = await fetch("/api/signup", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        name: form.elements["name"].value,
+                        email: form.elements["email"].value,
+                        password: password
+                    })
+                });
+                const data = await res.json().catch(() => ({}));
+
+                if (res.ok) {
+                    window.location.href = "dashboard.html";
+                } else {
+                    alert(data.error || "Signup failed.");
+                }
+            } catch (err) {
+                alert("Could not reach the server. Is it running?");
+            } finally {
+                btn.disabled = false;
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
